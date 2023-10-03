@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 import com.revrobotics.ColorSensorV3; // color sensor library
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; // internal Falcon motors
 import edu.wpi.first.wpilibj.AnalogPotentiometer; // analog sensor lib for IR sensors
 import edu.wpi.first.wpilibj.XboxController; // controller input library
@@ -49,7 +50,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    flywheel.set(0.35); // starts the flywheel (always spinning)
+    flywheel.set(0.10); // starts the flywheel (always spinning)
 
     //Sensor calibration code:
     //System.out.println("entry " + EntryIR.get());
@@ -131,6 +132,8 @@ public class Shooter extends SubsystemBase {
             entrymotor.set(-0.25); 
             /* cycle2top requires both the interior motors to be running to get the ball to the top spot
             since the top motor is already spinning, the entry motor is the only one that needs to be started */
+
+            flywheel_count = 0;
 
         }
         else{
